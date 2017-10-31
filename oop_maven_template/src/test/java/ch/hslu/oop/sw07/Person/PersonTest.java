@@ -1,7 +1,7 @@
 /**
  * 
  */
-package ch.hslu.oop.sw07;
+package ch.hslu.oop.sw07.Person;
 
 import static org.junit.Assert.*;
 
