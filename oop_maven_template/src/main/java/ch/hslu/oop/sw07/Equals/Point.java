@@ -1,12 +1,14 @@
 package ch.hslu.oop.sw07.Equals;
 
+import java.util.Objects;
+
 /**
  * Klasse, welche einen Kreis darstellt
  * 
  * @author JabbaTheGut
  * @version 2017.10.04
  */
-public class Point {
+public class Point implements Comparable<Point> {
 	private int x;
 	private int y;
 
@@ -98,22 +100,39 @@ public class Point {
 		this.y = (int) (r * Math.sin(Math.toDegrees(angle)));
 	}
 
+	/**
+	 * hashCode wird aus x- und y-Koordinaten zusammengesetzt
+	 */
 	@Override
-	public int hashCode() {
-		// TODO Auto-generated method stub
-		return super.hashCode();
+	public final int hashCode() {
+		return Objects.hash(this.getX(), this.getY());
 	}
 
 	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return super.toString();
+	public final String toString() {
+		return "Point mit X-Koor: " + this.getX() + " und Y-Koor: " + this.getY();
 	}
 
+	/**
+	 * Zwei Point-Objekte sind nur gleich, falls sie vom gleichen Typ und die
+	 * gleichen x- und y-Koordinaten haben
+	 */
 	@Override
-	public boolean equals(Object obj) {
-		// TODO Auto-generated method stub
-		return super.equals(obj);
+	public final boolean equals(Object obj) {
+		if (obj instanceof Point) {
+			final Point point1 = (Point) obj;
+			return (point1.getX() == this.getX() && point1.getY() == this.getY()) ? true : false;
+		} else {
+			return false;
+		}
+	}
+
+	/**
+	 * Zwei Point-Objekte werden aufgrund ihrer x- und y-Koordianten verglichen
+	 */
+	@Override
+	public final int compareTo(Point o) {
+		return (Integer.compare(this.getX(), o.getX()) + Integer.compare(this.getY(), o.getY()) / 2);
 	}
 
 }

@@ -4,6 +4,7 @@
 package ch.hslu.oop.sw07.Person;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Modellierung einer Person mit einer eindeutigen Identifikationsnummer
@@ -11,7 +12,7 @@ import java.util.ArrayList;
  * @author Daveeee
  *
  */
-public class Person {
+public class Person implements Comparable<Person> {
     private final long id;
     private String firstname;
     private String lastname;
@@ -44,7 +45,7 @@ public class Person {
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "Person-Objekt mit Namen: " + this.firstname + " und Nachnamen: " + this.lastname + " und ID: "
                 + this.id;
     }
@@ -56,7 +57,7 @@ public class Person {
     @Override
     public final boolean equals(Object obj) {
         if (obj instanceof Person) {
-            Person person = (Person) obj;
+            final Person person = (Person) obj;
             if (person.getId() == this.getId()) {
                 return true;
             } else {
@@ -74,8 +75,18 @@ public class Person {
      */
     @Override
     public final int hashCode() {
-        return (int) this.id + 100;
+        return Objects.hash(this.id, 100);
     }
+
+    /**
+     * Zwei Person-Objekte werden aufrung ihrer ID verglichen
+     */
+	@Override
+	public final int compareTo(Person o) {
+		return Long.compare(this.id, o.id);
+	}
+    
+    
     
     
 }
