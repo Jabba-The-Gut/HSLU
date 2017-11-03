@@ -30,9 +30,7 @@ public class Main {
         System.out.println("The rectangle has the X-Coor: " + shape2.getX() + " and the Y-Coor: " + shape2.getY()
                 + " with a Area of " + shape2.getArea() + ".");
         
-        // Um Zugriff auf Methoden von Circle zu haben, muss man shape downcasten
-        Circle circle  = (Circle) shape1;
-        System.out.println(circle.getDiameter());
+        System.out.println(shape1.getDiameter());
     }
 
 }

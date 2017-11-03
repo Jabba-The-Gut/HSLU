@@ -30,6 +30,12 @@ public abstract class Shape {
     public final int getY() {
         return y;
     }
+    
+    /**
+     * Je nach Form untersch. Berechnung
+     * @return nichts
+     */
+    public abstract double getDiameter();
 
     /**
      * Je nach Form untersch. Berechnung
