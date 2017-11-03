@@ -8,7 +8,7 @@ package ch.hslu.oop.sw07.Equals;
  * @author JabbbaTheGut
  * @version 2017.02.10
  */
-public class Temperatur {
+public class Temperatur implements Comparable<Temperatur> {
 	// Privates Feld, welches den aktuellen Wert des Temperatur-Objekts
 	// speichert
 	private double tempCels;
@@ -24,7 +24,11 @@ public class Temperatur {
 	 * Konstruktor, bei welchem die initiale Temperatur gewählt werden kann
 	 */
 	public Temperatur(double defaultTemp) {
-		tempCels = defaultTemp;
+		if (defaultTemp < Double.MIN_VALUE || defaultTemp > Double.MAX_VALUE) {
+			tempCels = 20.0;
+		} else {
+			tempCels = defaultTemp;
+		}
 	}
 
 	/**
@@ -58,8 +62,8 @@ public class Temperatur {
 	}
 
 	/**
-	 * Veränderung der Temperatur um einen relativen Kelvin-Wert, welcher dann
-	 * in Grad zurückgerechnet wird
+	 * Veränderung der Temperatur um einen relativen Kelvin-Wert, welcher dann in
+	 * Grad zurückgerechnet wird
 	 */
 	public void changeKelv(double relativevalue) {
 		double tempKelv = convertCelsToCelvin();
@@ -74,22 +78,32 @@ public class Temperatur {
 		tempCels += relativevalue;
 	}
 
+	/**
+	 * Zwei Temperatur-Objekte sind gleich, falls sie die gleiche Identität haben.
+	 */
 	@Override
-	public boolean equals(Object arg0) {
-		// TODO Auto-generated method stub
-		return super.equals(arg0);
+	public final boolean equals(Object obj) {
+		return obj == this ? true : false;
 	}
 
 	@Override
-	public int hashCode() {
-		// TODO Auto-generated method stub
+	public final int hashCode() {
 		return super.hashCode();
 	}
 
 	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return super.toString();
+	public final String toString() {
+		return "Aktuelle Temperatur in Celsius: " + this.getTempCels();
 	}
+
+	/**
+	 * Zwei Temperatur-Objekte werden aufgrund ihrer Temperatur verglichen
+	 */
+	@Override
+	public int compareTo(Temperatur o) {
+		return Double.compare(this.getTempCels(), o.getTempCels());
+	}
+	
+	
 
 }

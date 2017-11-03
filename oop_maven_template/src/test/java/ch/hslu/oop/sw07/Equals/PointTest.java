@@ -5,92 +5,136 @@ package ch.hslu.oop.sw07.Equals;
 
 import static org.junit.Assert.*;
 
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
+
+import ch.hslu.oop.sw07.Person.Person;
+import nl.jqno.equalsverifier.EqualsVerifier;
 
 /**
  * @author Dave
  *
  */
 public class PointTest {
+	private static int testcounter;
 
-	/**
-	 * Test method for {@link ch.hslu.oop.sw07.Equals.Point#Point(int, int)}.
-	 */
+	@BeforeClass
+	public static void setBefore() {
+		testcounter = 0;
+		System.out.println("Tests starting now...");
+	}
+
+	@Before
+	public void before() {
+		testcounter++;
+		System.out.println("Test " + testcounter + " has started...");
+	}
+
+	@After
+	public void after() {
+		System.out.println("Test " + testcounter + " has ended...");
+	}
+
+	@AfterClass
+	public static void setAfter() {
+		System.out.println("Tests ended...");
+	}
+
 	@Test
-	public void testPointIntInt() {
-		fail("Not yet implemented");
+	public void equalsContract() {
+		EqualsVerifier.forClass(Point.class).verify();
 	}
 
 	/**
-	 * Test method for {@link ch.hslu.oop.sw07.Equals.Point#Point(ch.hslu.oop.sw07.Equals.Point)}.
+	 * Test method for {@link ch.hslu.oop.sw07.Equals.Point#toString()}.
 	 */
 	@Test
-	public void testPointPoint() {
-		fail("Not yet implemented");
+	public void testToString() throws Exception {
+		assertEquals("Point mit X-Koor: 10 und Y-Koor: 10", new Point(10, 10).toString());
 	}
 
 	/**
-	 * Test method for {@link ch.hslu.oop.sw07.Equals.Point#getY()}.
+	 * Test method for
+	 * {@link ch.hslu.oop.sw07.Equals.Point#equals(java.lang.Object)}.
 	 */
 	@Test
-	public void testGetY() {
-		fail("Not yet implemented");
+	public void testEqualsTrue() {
+		assertTrue(new Point(10, 10).equals(new Point(10, 10)));
 	}
 
 	/**
-	 * Test method for {@link ch.hslu.oop.sw07.Equals.Point#getX()}.
+	 * Test method for
+	 * {@link ch.hslu.oop.sw07.Equals.Point#equals(java.lang.Object)}.
 	 */
 	@Test
-	public void testGetX() {
-		fail("Not yet implemented");
+	public void testEqualsFalse() {
+		assertFalse(new Point(10, 10).equals(new Point(5, 30)));
 	}
 
 	/**
-	 * Test method for {@link ch.hslu.oop.sw07.Equals.Point#setX(int)}.
+	 * Test method for {@link ch.hslu.oop.sw07.Equals.Point#hashCode()}.
 	 */
 	@Test
-	public void testSetX() {
-		fail("Not yet implemented");
+	public void testHashCodeTrue() {
+		assertTrue(new Point(10, 10).hashCode() == new Point(10, 10).hashCode());
 	}
 
 	/**
-	 * Test method for {@link ch.hslu.oop.sw07.Equals.Point#setY(int)}.
+	 * Test method for {@link ch.hslu.oop.sw07.Equals.Point#hashCode()}.
 	 */
 	@Test
-	public void testSetY() {
-		fail("Not yet implemented");
+	public void testHashCodeMultiple() {
+		final Point point1 = new Point(10, 10);
+		final Point point2 = new Point(10, 10);
+		assertArrayEquals(new int[] { point1.hashCode(), point1.hashCode(), point1.hashCode() },
+				new int[] { point2.hashCode(), point2.hashCode(), point2.hashCode() });
 	}
 
 	/**
-	 * Test method for {@link ch.hslu.oop.sw07.Equals.Point#getQuadrant()}.
+	 * Test method for {@link ch.hslu.oop.sw07.Equals.Point#hashCode()}.
 	 */
 	@Test
-	public void testGetQuadrant() {
-		fail("Not yet implemented");
+	public void testHashCodeFalse() {
+		assertFalse(new Point(10, 20).hashCode() == new Point(40, 10).hashCode());
 	}
 
 	/**
-	 * Test method for {@link ch.hslu.oop.sw07.Equals.Point#moveRelative(int, int)}.
+	 * Test method for
+	 * {@link ch.hslu.oop.sw07.Equals.Point#compareTo(ch.hslu.oop.sw07.Equals.Point)}.
 	 */
 	@Test
-	public void testMoveRelativeIntInt() {
-		fail("Not yet implemented");
+	public void testCompareEquals() {
+		assertTrue(new Point(10, 10).compareTo(new Point(10, 10)) == 0);
 	}
-
+	
 	/**
-	 * Test method for {@link ch.hslu.oop.sw07.Equals.Point#moveRelative(ch.hslu.oop.sw07.Equals.Point)}.
+	 * Test method for
+	 * {@link ch.hslu.oop.sw07.Equals.Point#compareTo(ch.hslu.oop.sw07.Equals.Point)}.
 	 */
 	@Test
-	public void testMoveRelativePoint() {
-		fail("Not yet implemented");
+	public void testCompareSmaller() {
+		assertTrue(new Point(9, 9).compareTo(new Point(10, 10)) < 0);
 	}
-
+	
 	/**
-	 * Test method for {@link ch.hslu.oop.sw07.Equals.Point#moveRelative(double, int)}.
+	 * Test method for
+	 * {@link ch.hslu.oop.sw07.Equals.Point#compareTo(ch.hslu.oop.sw07.Equals.Point)}.
 	 */
 	@Test
-	public void testMoveRelativeDoubleInt() {
-		fail("Not yet implemented");
+	public void testCompareBigger() {
+		assertTrue(new Point(12, 12).compareTo(new Point(10, 10)) > 0);
+	}
+	
+	/**
+	 * Test method for
+	 * {@link ch.hslu.oop.sw07.Equals.Point#compareTo(ch.hslu.oop.sw07.Equals.Point)}.
+	 */
+	@Test
+	public void testCompareSpecial() {
+		assertTrue(new Point(12, 10).compareTo(new Point(10, 10)) > 0);
 	}
 
 }
