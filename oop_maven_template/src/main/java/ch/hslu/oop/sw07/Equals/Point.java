@@ -128,11 +128,11 @@ public class Point implements Comparable<Point> {
 	}
 
 	/**
-	 * Zwei Point-Objekte werden aufgrund ihrer x- und y-Koordianten verglichen
+	 * Zwei Point-Objekte werden aufgrund ihrer x-Koordianten verglichen
 	 */
 	@Override
 	public final int compareTo(Point o) {
-		return (Integer.compare(this.getX(), o.getX()) + Integer.compare(this.getY(), o.getY()) / 2);
+	    return Integer.compare(this.x, o.x);	
 	}
 
 }

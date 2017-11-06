@@ -176,7 +176,7 @@ public class PersonTest {
 	 * Test method for {@link ch.hslu.oop.sw07.Person.Person#compareTo(ch.hslu.oop.sw07.Person.Person)}.
 	 */
 	@Test
-	public  void testCompareToSmallers(){
+	public  void testCompareToSmaller(){
 	assertTrue(person.compareTo(new Person(234565L, "Barbara", "Held")) < 0);
 	}
 

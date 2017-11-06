@@ -127,14 +127,4 @@ public class PointTest {
 	public void testCompareBigger() {
 		assertTrue(new Point(12, 12).compareTo(new Point(10, 10)) > 0);
 	}
-	
-	/**
-	 * Test method for
-	 * {@link ch.hslu.oop.sw07.Equals.Point#compareTo(ch.hslu.oop.sw07.Equals.Point)}.
-	 */
-	@Test
-	public void testCompareSpecial() {
-		assertTrue(new Point(12, 10).compareTo(new Point(10, 10)) > 0);
-	}
-
 }
