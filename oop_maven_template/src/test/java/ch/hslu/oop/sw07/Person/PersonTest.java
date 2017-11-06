@@ -96,22 +96,9 @@ public class PersonTest {
 	 * Test method for {@link java.lang.Object#equals(java.lang.Object)}.
 	 */
 	@Test
-	@Ignore
 	public void testEqualsTrue() {
-		Person person1 = new Person(123L, "Herbert", "Herder");
-		Person person2 = (Person) person1;
-		assertTrue(person1.equals(person2));
-	}
-
-	/**
-	 * Test method for {@link java.lang.Object#equals(java.lang.Object)}.
-	 */
-	@Test
-	@Ignore
-	public void testEqualsFalse() {
-		Person person1 = new Person(123L, "Herbert", "Herder");
-		Person person2 = new Person(123L, "Herbert", "Herder");
-		assertFalse(person1.equals(person2));
+		Person person1 = new Person(234564L, "Timo", "Schmelzer");
+		assertTrue(person.equals(person1));
 	}
 
 	/**
@@ -119,9 +106,9 @@ public class PersonTest {
 	 * {@link ch.hslu.oop.sw07.Person.Person#equals(java.lang.Object)}.
 	 */
 	@Test
-	public void testEqualsObject() {
-		Person person1 = new Person(234564L, "Timo", "Schmelzer");
-		assertTrue(person.equals(person1));
+	public void testEqualsFalse() {
+		Person person1 = new Person(23454L, "Timo", "Schmelzer");
+		assertFalse(person.equals(person1));
 	}
 
 	/**
@@ -157,27 +144,30 @@ public class PersonTest {
 	}
 
 	/**
-	 * Test method for {@link ch.hslu.oop.sw07.Person.Person#compareTo(ch.hslu.oop.sw07.Person.Person)}.
+	 * Test method for
+	 * {@link ch.hslu.oop.sw07.Person.Person#compareTo(ch.hslu.oop.sw07.Person.Person)}.
 	 */
 	@Test
-	public  void testCompareToEqual(){
-	assertTrue(person.compareTo(new Person(234564L, "Barbara", "Held")) == 0);
+	public void testCompareToEqual() {
+		assertTrue(person.compareTo(new Person(234564L, "Barbara", "Held")) == 0);
 	}
-	
+
 	/**
-	 * Test method for {@link ch.hslu.oop.sw07.Person.Person#compareTo(ch.hslu.oop.sw07.Person.Person)}.
+	 * Test method for
+	 * {@link ch.hslu.oop.sw07.Person.Person#compareTo(ch.hslu.oop.sw07.Person.Person)}.
 	 */
 	@Test
-	public  void testCompareToBigger(){
-	assertTrue(person.compareTo(new Person(234563L, "Barbara", "Held")) > 0 );
+	public void testCompareToBigger() {
+		assertTrue(person.compareTo(new Person(234563L, "Barbara", "Held")) > 0);
 	}
-	
+
 	/**
-	 * Test method for {@link ch.hslu.oop.sw07.Person.Person#compareTo(ch.hslu.oop.sw07.Person.Person)}.
+	 * Test method for
+	 * {@link ch.hslu.oop.sw07.Person.Person#compareTo(ch.hslu.oop.sw07.Person.Person)}.
 	 */
 	@Test
-	public  void testCompareToSmaller(){
-	assertTrue(person.compareTo(new Person(234565L, "Barbara", "Held")) < 0);
+	public void testCompareToSmaller() {
+		assertTrue(person.compareTo(new Person(234565L, "Barbara", "Held")) < 0);
 	}
 
 }

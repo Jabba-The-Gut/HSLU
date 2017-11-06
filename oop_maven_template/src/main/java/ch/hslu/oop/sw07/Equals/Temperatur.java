@@ -86,6 +86,10 @@ public class Temperatur implements Comparable<Temperatur> {
 		return obj == this ? true : false;
 	}
 
+	/**
+	 * Da zwei Objekte gleich sind, wenn sie die gleiche Identität haben, muss an
+	 * der hash-Implementation nichts geändert werden
+	 */
 	@Override
 	public final int hashCode() {
 		return super.hashCode();
@@ -103,7 +107,5 @@ public class Temperatur implements Comparable<Temperatur> {
 	public int compareTo(Temperatur o) {
 		return Double.compare(this.getTempCels(), o.getTempCels());
 	}
-	
-	
 
 }

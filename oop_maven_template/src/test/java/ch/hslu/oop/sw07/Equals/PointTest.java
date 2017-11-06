@@ -71,7 +71,7 @@ public class PointTest {
 	 */
 	@Test
 	public void testEqualsFalse() {
-		assertFalse(new Point(10, 10).equals(new Point(5, 30)));
+		assertFalse(new Point(10, 10).equals(new Point(5, 10)));
 	}
 
 	/**

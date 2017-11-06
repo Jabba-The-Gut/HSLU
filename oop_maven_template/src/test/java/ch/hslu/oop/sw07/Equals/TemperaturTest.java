@@ -23,11 +23,10 @@ import nl.jqno.equalsverifier.EqualsVerifier;
  */
 public class TemperaturTest {
 	private static int testcounter;
-	private static Temperatur temp1;
+	private static final Temperatur temp1 = new Temperatur(12.0);
 
 	@BeforeClass
 	public static void setBefore() {
-		temp1 = new Temperatur(12.0);
 		testcounter = 0;
 		System.out.println("Tests starting now...");
 	}
