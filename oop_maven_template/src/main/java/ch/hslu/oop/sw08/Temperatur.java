@@ -9,7 +9,6 @@ package ch.hslu.oop.sw08;
  * @version 2017.02.10
  */
 public class Temperatur implements Comparable<Temperatur> {
-
     private static final double KELVIN_OFFSET = 273.15;
     private double tempCels;
 
@@ -83,8 +82,8 @@ public class Temperatur implements Comparable<Temperatur> {
     }
 
     /**
-     * Zwei Temperatur-Objekte sind gleich, falls sie die gleiche Identität
-     * haben und Temp-Wert haben
+     * Zwei Temperatur-Objekte sind gleich, falls sie die gleiche Identität und
+     * Temp-Wert haben
      */
     @Override
     public final boolean equals(Object obj) {
@@ -106,11 +105,11 @@ public class Temperatur implements Comparable<Temperatur> {
 
     /**
      * Da zwei Objekte gleich sind, wenn sie die gleiche Identität haben, muss
-     * an der hash-Implementation nichts geändert werden
+     * an der default-Implementation nichts geandert werden
      */
     @Override
     public final int hashCode() {
-        return Double.hashCode(this.tempCels);
+        return super.hashCode();
     }
 
     @Override
