@@ -9,7 +9,7 @@ package ch.hslu.oop.sw06.Shape;
  * @author Daveeee
  *
  */
-public class Circle extends Shape {
+public final class Circle extends Shape {
 	private double diameter;
 
 	public Circle(int x, int y, double diameter) {

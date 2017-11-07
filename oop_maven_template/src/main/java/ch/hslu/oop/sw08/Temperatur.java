@@ -1,128 +1,110 @@
 package ch.hslu.oop.sw08;
 
 /**
- * Klasse Temperatur, welche die real existierende Temperatur in Grad mit einem
- * Feld abbildet. Die Temperatur kann abgefragt, umgewandelt und relativ
- * geändert werden.
+ * Klasse Temperatur, welche die real existierende Temperatur in Kelvin
+ * abbildet.
  * 
  * @author JabbbaTheGut
- * @version 2017.02.10
+ * @version 1.3
  */
-public class Temperatur implements Comparable<Temperatur> {
-    private static final double KELVIN_OFFSET = 273.15;
-    private double tempCels;
+public final class Temperatur implements Comparable<Temperatur> {
+	private static final float KELVIN_OFFSET = 273.15f;
+	private float kelvin;
 
-    /**
-     * Konstruktor, welcher die initiale Temperatur aut. auf 20 Grad setzt
-     */
-    public Temperatur() {
-        tempCels = 20.0;
-    }
+	/**
+	 * Default Konstruktor
+	 * 
+	 * @param celsius
+	 *            Temperatur in Celsius
+	 */
+	public Temperatur(float celsius) {
+		if (celsius > Float.MIN_VALUE && celsius < Float.MAX_VALUE) {
+			kelvin = Temperatur.convertCelsiusToKelvin(celsius);
+		} else {
+			kelvin = 20.0f;
+		}
+	}
 
-    /**
-     * Konstruktor, bei welchem die initiale Temperatur gewählt werden kann
-     */
-    public Temperatur(double defaultTemp) {
-        if (defaultTemp < Double.MIN_VALUE || defaultTemp > Double.MAX_VALUE) {
-            tempCels = 20.0;
-        } else {
-            tempCels = defaultTemp;
-        }
-    }
+	/**
+	 * Konstruktor mit Temperatur-Objekt als Parameter
+	 * 
+	 * @param temp
+	 *            Temperatur Objekt, dessen Temp-Wert übernommen werden soll
+	 */
+	public Temperatur(Temperatur temp) {
+		kelvin = temp.getKelvin();
+	}
 
-    /**
-     * Getter-Methode für die Temperatur in Grad
-     */
-    public final double getTempCels() {
-        return tempCels;
-    }
+	public float getKelvin() {
+		return kelvin;
+	}
 
-    /**
-     * Setter-Methode für die Temperatur in Grad
-     */
-    public final void setTempCels(double input) {
-        if (input > Double.MIN_VALUE && input < Double.MAX_VALUE) {
-            tempCels = input;
-        } else {
-        }
-    }
+	public float getCelsius() {
+		return Temperatur.convertKelvinToCelsius(kelvin);
+	}
 
-    /**
-     * Umrechnung von Grad zu Kelvin
-     */
-    public double convertCelsToCelvin() {
-        return (tempCels + KELVIN_OFFSET);
-    }
+	public void setKelvin(float kelvin) {
+		if (kelvin > Float.MIN_VALUE && kelvin < Float.MAX_VALUE) {
+			this.kelvin = kelvin;
+		}
+	}
 
-    /**
-     * Umrechnung von Grad zu Fahrenheit
-     */
-    public double convertCelsToFar() {
-        return (((tempCels * 1.8) + 32));
-    }
+	public void setCelsius(float celsius) {
+		if (celsius > Float.MIN_VALUE && celsius < Float.MAX_VALUE) {
+			kelvin = Temperatur.convertCelsiusToKelvin(celsius);
+		}
+	}
 
-    /**
-     * Veränderung der Temperatur um einen relativen Kelvin-Wert
-     */
-    public void changeKelv(double relativeValueKelv) {
-        if (relativeValueKelv > Double.MAX_VALUE && relativeValueKelv < Double.MIN_VALUE) {
-            double tempKelv = convertCelsToCelvin();
-            tempKelv += relativeValueKelv;
-            setTempCels((tempKelv - KELVIN_OFFSET));
-        }
-    }
+	public static float convertKelvinToCelsius(float kelvin) {
+		return (kelvin - KELVIN_OFFSET);
+	}
 
-    /**
-     * Veränderung der Temperatur um einen relativen Grad-Wert
-     */
-    public void changeCelsius(double relativeValueCels) {
-        if (relativeValueCels > Double.MAX_VALUE && relativeValueCels < Double.MIN_VALUE) {
-            tempCels += relativeValueCels;
-        }
-    }
+	public static float convertCelsiusToKelvin(float celsius) {
+		return (celsius + KELVIN_OFFSET);
+	}
 
-    /**
-     * Zwei Temperatur-Objekte sind gleich, falls sie die gleiche Identität und
-     * Temp-Wert haben
-     */
-    @Override
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            final Temperatur temp = (Temperatur) obj;
-            if (obj instanceof Temperatur) {
-                if (this.tempCels == temp.tempCels) {
-                    return true;
-                } else {
-                    return false;
-                }
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }
-    }
+	/**
+	 * Zwei Temperatur-Objekte sind gleich, falls sie die gleiche Identität, den
+	 * gleichen Typ und den gleichen Temp-Wert haben
+	 */
+	@Override
+	public final boolean equals(Object object) {
+		if (this == object) {
+			final Temperatur temp = (Temperatur) object;
+			if (object instanceof Temperatur) {
+				if (this.kelvin == temp.getKelvin()) {
+					return true;
+				} else {
+					return false;
+				}
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}
 
-    /**
-     * Da zwei Objekte gleich sind, wenn sie die gleiche Identität haben, muss
-     * an der default-Implementation nichts geandert werden
-     */
-    @Override
-    public final int hashCode() {
-        return super.hashCode();
-    }
+	/**
+	 * Da zwei Objekte gleich sind, wenn sie die gleiche Identität haben, muss an
+	 * der default-Implementation nichts geandert werden
+	 */
+	@Override
+	public final int hashCode() {
+		return super.hashCode();
+	}
 
-    @Override
-    public final String toString() {
-        return "Aktuelle Temperatur in Celsius: " + this.getTempCels();
-    }
+	@Override
+	public final String toString() {
+		return "Aktuelle Temperatur in Celsius: " + this.getCelsius();
+	}
 
-    /**
-     * Zwei Temperatur-Objekte werden aufgrund ihrer Temperatur verglichen
-     */
-    @Override
-    public int compareTo(Temperatur o) {
-        return Double.compare(this.getTempCels(), o.getTempCels());
-    }
+	/**
+	 * Zwei Temperatur-Objekte werden aufgrund ihrer Temperatur verglichen
+	 */
+	@Override
+	public int compareTo(Temperatur o) {
+		return Double.compare(this.kelvin, o.getKelvin());
+	}
 
 }

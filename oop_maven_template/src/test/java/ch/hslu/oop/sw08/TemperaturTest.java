@@ -1,6 +1,3 @@
-/**
- * 
- */
 package ch.hslu.oop.sw08;
 
 import static org.junit.Assert.*;
@@ -11,133 +8,121 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-/**
- * @author Daveeee
- *
- */
+import ch.hslu.oop.sw07.Person.Person;
+import nl.jqno.equalsverifier.EqualsVerifier;
+
+
 public class TemperaturTest {
-    private static int testcounter;
-    private static Temperatur temp1;
-    private static Temperatur temp2;
+	private static int testcounter;
+	private static Temperatur temperatur;
 
-    @BeforeClass
-    public static void setBefore() {
-        testcounter = 0;
-        temp1 = new Temperatur();
-        temp2 = new Temperatur();
-        System.out.println("Tests starting now...");
-    }
+	@BeforeClass
+	public static void setBefore() {
+		testcounter = 0;
+		temperatur = new Temperatur(20.0f);
+		System.out.println("JUnit Tests started");
+	}
 
-    @Before
-    public void before() {
-        testcounter++;
-        System.out.println("Test " + testcounter + " has started...");
-    }
+	@Before
+	public void before() {
+		testcounter++;
+		System.out.println("Test " + testcounter + " started...");
+	}
 
-    @After
-    public void after() {
-        System.out.println("Test " + testcounter + " has ended...");
-    }
+	@After
+	public void after() {
+		System.out.println("Test " + testcounter + " ended...");
+	}
 
-    @AfterClass
-    public static void setAfter() {
-        System.out.println("Tests ended...");
-    }
+	@AfterClass
+	public static void setAfter() {
+		System.out.println("JUnit Tests finished");
+	}
+	
+	@Test
+	public void equalsContract() {
+		EqualsVerifier.forClass(Person.class).verify();
+	}
 
-    /**
-     * Test method for {@link ch.hslu.oop.sw08.Temperatur#hashCode()}.
-     */
-    @Test
-    public void testHashCodeTrue() {
-        assertTrue(temp1.hashCode() == temp2.hashCode());
-    }
+	@Test
+	public void testHashCode() {
+		Temperatur sample = new Temperatur(10.0f);
+		Temperatur sample2 = (Temperatur) sample;
+		assertTrue(sample.hashCode() == sample2.hashCode());
+	}
 
-    /**
-     * Test method for {@link ch.hslu.oop.sw08.Temperatur#hashCode()}.
-     */
-    @Test
-    public void testHashCodeFalse() {
-        Temperatur sample = new Temperatur(33.0);
-        assertFalse(sample.hashCode() == temp2.hashCode());
-    }
+	@Test
+	public void testTemperaturTemperatur() {
+		Temperatur sample = new Temperatur(10.0f);
+		Temperatur sample2 = new Temperatur(sample);
+		assertTrue(sample.getKelvin() == sample2.getKelvin());
+	}
 
-    /**
-     * Test method for {@link ch.hslu.oop.sw08.Temperatur#Temperatur(double)}.
-     */
-    @Test
-    public void testTemperaturDoubleToBig() {
-        Temperatur sample = new Temperatur((Double.MAX_VALUE + Double.MAX_VALUE));
-        assertTrue(20.0 == sample.getTempCels());
-    }
+	@Test
+	public void testGetKelvin() {
+		assertTrue(temperatur.getKelvin() == 293.15f);
+	}
 
-    /**
-     * Test method for {@link ch.hslu.oop.sw08.Temperatur#getTempCels()}.
-     */
-    @Test
-    public void testGetTempCels() {
-        assertTrue(temp1.getTempCels() == 20.0);
-    }
+	@Test
+	public void testGetCelsius() {
+		assertTrue(temperatur.getCelsius() == 20.0f);
+	}
 
-    /**
-     * Test method for {@link ch.hslu.oop.sw08.Temperatur#setTempCels(double)}.
-     */
-    @Test
-    public void testSetTempCels() {
-        Temperatur sample = new Temperatur();
-        sample.setTempCels(40.0);
-        assertTrue(sample.getTempCels() == 40.0);
-    }
+	@Test
+	public void testSetKelvin() {
+		Temperatur sample = new Temperatur(20.0f);
+		sample.setKelvin(200.15f);
+		assertTrue(sample.getKelvin() == 200.15f);
+	}
 
-    /**
-     * Test method for
-     * {@link ch.hslu.oop.sw08.Temperatur#convertCelsToCelvin()}.
-     */
-    @Test
-    public void testConvertCelsToCelvin() {
-        assertTrue(temp2.convertCelsToCelvin() == 293.15);
-    }
+	@Test
+	public void testSetCelsius() {
+		Temperatur sample = new Temperatur(30.0f);
+		sample.setCelsius(40.0f);
+		assertTrue(sample.getCelsius() == 40.0f);
+	}
 
-    /**
-     * Test method for {@link ch.hslu.oop.sw08.Temperatur#convertCelsToFar()}.
-     * 
-     */
-    @Test
-    public void testConvertCelsToFar() {
-        assertTrue(temp2.convertCelsToFar() == 68.0);
-    }
+	@Test
+	public void testConvertKelvinToCelsius() {
+		assertTrue(Temperatur.convertKelvinToCelsius(20.0f)== -253.15f);
+	}
 
-    /**
-     * Test method for
-     * {@link ch.hslu.oop.sw08.Temperatur#equals(java.lang.Object)}.
-     */
-    @Test
-    public void testEqualsTrue() {
-        assertTrue(temp1.equals(temp1));
-    }
+	@Test
+	public void testConvertCelsiusToKelvin() {
+		assertTrue(Temperatur.convertCelsiusToKelvin(20.0f) == 293.15f);
+	}
 
-    /**
-     * Test method for
-     * {@link ch.hslu.oop.sw08.Temperatur#equals(java.lang.Object)}.
-     */
-    @Test
-    public void testEqualsFalse() {
-        assertFalse(temp1.equals(temp2));
-    }
+	@Test
+	public void testEqualsObject() {
+		Temperatur sample = new Temperatur(10.0f);
+		Temperatur sample2 = (Temperatur) sample;
+		assertTrue(sample.equals(sample2));
+	}
 
-    /**
-     * Test method for {@link ch.hslu.oop.sw08.Temperatur#toString()}.
-     */
-    @Test
-    public void testToString() {
-        assertEquals("Aktuelle Temperatur in Celsius: 20.0", temp1.toString());
-    }
+	@Test
+	public void testToString() {
+		assertTrue("Aktuelle Temperatur in Celsius: 20.0".equals(temperatur.toString()));
+	}
 
-    /**
-     * Test method for
-     * {@link ch.hslu.oop.sw08.Temperatur#compareTo(ch.hslu.oop.sw08.Temperatur)}.
-     */
-    @Test
-    public void testCompareToTrue() {
-        assertTrue(temp1.compareTo(temp2) == 0);
-    }
+	@Test
+	public void testCompareToEqual() {
+		Temperatur sample = new Temperatur(10.0f);
+		Temperatur sample2 = new Temperatur(10.0f);
+		assertTrue(sample.compareTo(sample2) == 0);
+	}
+	
+	@Test
+	public void testCompareToSmaller() {
+		Temperatur sample = new Temperatur(9.0f);
+		Temperatur sample2 = new Temperatur(10.0f);
+		assertTrue(sample.compareTo(sample2) < 0);
+	}
+	
+	@Test
+	public void testCompareToBigger() {
+		Temperatur sample = new Temperatur(23.5f);
+		Temperatur sample2 = new Temperatur(10.0f);
+		assertTrue(sample.compareTo(sample2) > 0);
+	}
+
 }

@@ -9,7 +9,7 @@ package ch.hslu.oop.sw06.Shape;
  * @author Daveeee
  *
  */
-public class Rectangle extends Shape {
+public final class Rectangle extends Shape {
     private int width;
     private int height;
 

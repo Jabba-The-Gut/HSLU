@@ -13,7 +13,7 @@ public abstract class Shape {
     private int x;
     private int y;
 
-    protected Shape(int x, int y) {
+    protected  Shape(int x, int y) {
         this.x = x;
         this.y = y;
     }
