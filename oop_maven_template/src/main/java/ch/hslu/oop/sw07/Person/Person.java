@@ -18,9 +18,9 @@ public class Person implements Comparable<Person> {
     private String lastname;
 
     public Person(long id, String first, String last) {
-            this.id = id;
-            this.firstname = first;
-            this.lastname = last;
+        this.id = id;
+        this.firstname = first;
+        this.lastname = last;
     }
 
     /**
@@ -51,8 +51,8 @@ public class Person implements Comparable<Person> {
     }
 
     /**
-     * Override of the Object .equals()-Method. Two Person-Objects are only equal,
-     * if they're of the same type and have the same id.
+     * Override of the Object .equals()-Method. Two Person-Objects are only
+     * equal, if they're of the same type and have the same id.
      */
     @Override
     public final boolean equals(Object obj) {
@@ -70,8 +70,8 @@ public class Person implements Comparable<Person> {
 
     /**
      * As two Person-Objects are equal if their id is the same, the hash-Code is
-     * generated using the ID. This ensures that two Person-Object with the same ID
-     * have the same Hash-Code
+     * generated using the ID. This ensures that two Person-Object with the same
+     * ID have the same Hash-Code
      */
     @Override
     public final int hashCode() {
@@ -81,12 +81,9 @@ public class Person implements Comparable<Person> {
     /**
      * Zwei Person-Objekte werden aufrung ihrer ID verglichen
      */
-	@Override
-	public final int compareTo(Person o) {
-		return Long.compare(this.id, o.id);
-	}
-    
-    
-    
-    
+    @Override
+    public final int compareTo(Person o) {
+        return Long.compare(this.id, o.id);
+    }
+
 }

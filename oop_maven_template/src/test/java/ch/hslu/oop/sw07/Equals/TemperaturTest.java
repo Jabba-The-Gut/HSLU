@@ -131,5 +131,4 @@ public class TemperaturTest {
 	public void testCompareToBigger() {
 		assertTrue(temp1.compareTo(new Temperatur(11.0)) > 0);
 	}
-
 }
