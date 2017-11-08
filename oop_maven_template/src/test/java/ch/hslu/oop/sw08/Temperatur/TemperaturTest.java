@@ -1,4 +1,7 @@
-package ch.hslu.oop.sw08;
+/**
+ * 
+ */
+package ch.hslu.oop.sw08.Temperatur;
 
 import static org.junit.Assert.*;
 

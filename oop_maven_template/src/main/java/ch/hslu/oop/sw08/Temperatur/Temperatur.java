@@ -1,4 +1,4 @@
-package ch.hslu.oop.sw08;
+package ch.hslu.oop.sw08.Temperatur;
 
 /**
  * Klasse Temperatur, welche die real existierende Temperatur in Kelvin
@@ -104,7 +104,7 @@ public final class Temperatur implements Comparable<Temperatur> {
 	 */
 	@Override
 	public int compareTo(Temperatur o) {
-		return Double.compare(this.kelvin, o.getKelvin());
+		return Float.compare(this.kelvin, o.getKelvin());
 	}
 
 }
