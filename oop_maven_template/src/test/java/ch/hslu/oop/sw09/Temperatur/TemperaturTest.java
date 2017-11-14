@@ -1,28 +1,34 @@
 /**
  * 
  */
-package ch.hslu.oop.sw08.Temperatur;
+package ch.hslu.oop.sw09.Temperatur;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
-import ch.hslu.oop.sw07.Person.Person;
+import ch.hslu.oop.sw09.Temperatur.Temperatur;
 import nl.jqno.equalsverifier.EqualsVerifier;
 
-
+/**
+ * @author Dave
+ *
+ */
 public class TemperaturTest {
+
 	private static int testcounter;
 	private static Temperatur temperatur;
 
 	@BeforeClass
 	public static void setBefore() {
 		testcounter = 0;
-		temperatur = new Temperatur(20.0f);
+		temperatur = Temperatur.createFromCelsius(20.0f);
 		System.out.println("JUnit Tests started");
 	}
 
@@ -41,7 +47,7 @@ public class TemperaturTest {
 	public static void setAfter() {
 		System.out.println("JUnit Tests finished");
 	}
-	
+
 	@Test
 	public void equalsContract() {
 		EqualsVerifier.forClass(Temperatur.class).verify();
@@ -49,16 +55,26 @@ public class TemperaturTest {
 
 	@Test
 	public void testHashCode() {
-		Temperatur sample = new Temperatur(10.0f);
+		Temperatur sample = Temperatur.createFromKelvin(10.0f);
 		Temperatur sample2 = (Temperatur) sample;
 		assertTrue(sample.hashCode() == sample2.hashCode());
 	}
 
 	@Test
 	public void testTemperaturTemperatur() {
-		Temperatur sample = new Temperatur(10.0f);
-		Temperatur sample2 = new Temperatur(sample);
+		Temperatur sample = Temperatur.createFromKelvin(10.0f);
+		Temperatur sample2 = Temperatur.createFromObject(sample);
 		assertTrue(sample.getKelvin() == sample2.getKelvin());
+	}
+	
+	@Rule 
+	public ExpectedException e =  ExpectedException.none();
+	
+	@Test
+	public void testTemperaturIllegalArgument() {
+		e.expect(IllegalArgumentException.class);
+		e.expectMessage("Temperatur canno't be below the absolute point of zero!");
+		Temperatur.createFromCelsius(-300.0f);
 	}
 
 	@Test
@@ -72,22 +88,8 @@ public class TemperaturTest {
 	}
 
 	@Test
-	public void testSetKelvin() {
-		Temperatur sample = new Temperatur(20.0f);
-		sample.setKelvin(200.15f);
-		assertTrue(sample.getKelvin() == 200.15f);
-	}
-
-	@Test
-	public void testSetCelsius() {
-		Temperatur sample = new Temperatur(30.0f);
-		sample.setCelsius(40.0f);
-		assertTrue(sample.getCelsius() == 40.0f);
-	}
-
-	@Test
 	public void testConvertKelvinToCelsius() {
-		assertTrue(Temperatur.convertKelvinToCelsius(20.0f)== -253.15f);
+		assertTrue(Temperatur.convertKelvinToCelsius(20.0f) == -253.15f);
 	}
 
 	@Test
@@ -97,7 +99,7 @@ public class TemperaturTest {
 
 	@Test
 	public void testEqualsObject() {
-		Temperatur sample = new Temperatur(10.0f);
+		Temperatur sample = Temperatur.createFromCelsius(10.0f);
 		Temperatur sample2 = (Temperatur) sample;
 		assertTrue(sample.equals(sample2));
 	}
@@ -109,23 +111,22 @@ public class TemperaturTest {
 
 	@Test
 	public void testCompareToEqual() {
-		Temperatur sample = new Temperatur(10.0f);
-		Temperatur sample2 = new Temperatur(10.0f);
+		Temperatur sample = Temperatur.createFromCelsius(10.0f);
+		Temperatur sample2 = Temperatur.createFromCelsius(10.0f);
 		assertTrue(sample.compareTo(sample2) == 0);
 	}
-	
+
 	@Test
 	public void testCompareToSmaller() {
-		Temperatur sample = new Temperatur(9.0f);
-		Temperatur sample2 = new Temperatur(10.0f);
+		Temperatur sample = Temperatur.createFromCelsius(9.0f);
+		Temperatur sample2 = Temperatur.createFromCelsius(10.0f);
 		assertTrue(sample.compareTo(sample2) < 0);
 	}
-	
+
 	@Test
 	public void testCompareToBigger() {
-		Temperatur sample = new Temperatur(23.5f);
-		Temperatur sample2 = new Temperatur(10.0f);
+		Temperatur sample = Temperatur.createFromCelsius(23.0f);
+		Temperatur sample2 = Temperatur.createFromCelsius(10.0f);
 		assertTrue(sample.compareTo(sample2) > 0);
 	}
-
 }

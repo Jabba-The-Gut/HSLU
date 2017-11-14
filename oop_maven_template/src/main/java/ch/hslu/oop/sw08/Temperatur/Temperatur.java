@@ -72,7 +72,7 @@ public final class Temperatur implements Comparable<Temperatur> {
 		if (this == object) {
 			final Temperatur temp = (Temperatur) object;
 			if (object instanceof Temperatur) {
-				if (this.kelvin == temp.getKelvin()) {
+				if (Float.compare(this.kelvin, temp.getKelvin()) == 0) {
 					return true;
 				} else {
 					return false;
