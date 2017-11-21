@@ -4,7 +4,7 @@
 package ch.hslu.oop.sw04.Switchable;
 
 /**
- * Interface, welches das Switchable um eine switchCount-Method erweitert
+ * Interface, welches das Switchable um eine switchCount-Methode erweitert
  * 
  * @author Daveeee
  *
