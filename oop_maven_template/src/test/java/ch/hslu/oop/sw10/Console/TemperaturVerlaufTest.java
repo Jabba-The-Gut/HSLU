@@ -1,7 +1,7 @@
 /**
  * 
  */
-package ch.hslu.oop.sw08.Temperatur;
+package ch.hslu.oop.sw10.Console;
 
 import static org.junit.Assert.*;
 
@@ -47,7 +47,7 @@ public class TemperaturVerlaufTest {
 	@Test
 	public void testAdd() {
 		TemperaturVerlauf sample = new TemperaturVerlauf();
-		sample.add(new Temperatur(10.0f));
+		sample.add(Temperatur.createFromCelsius(10.0f));
 		assertTrue(sample.getCount() == 1);
 	}
 
@@ -57,9 +57,9 @@ public class TemperaturVerlaufTest {
 	@Test
 	public void testClear() {
 		TemperaturVerlauf sample = new TemperaturVerlauf();
-		sample.add(new Temperatur(10.0f));
-		sample.add(new Temperatur(15.32f));
-		sample.add(new Temperatur(50.0f));
+		sample.add(Temperatur.createFromKelvin(10.0f));
+		sample.add(Temperatur.createFromCelsius(15.32f));
+		sample.add(Temperatur.createFromKelvin(50.0f));
 		sample.clear();
 		assertTrue(sample.getCount() == 0);
 	}
@@ -70,24 +70,13 @@ public class TemperaturVerlaufTest {
 	@Test
 	public void testGetCount() {
 		TemperaturVerlauf sample = new TemperaturVerlauf();
-		sample.add(new Temperatur(10.0f));
-		sample.add(new Temperatur(15.32f));
-		sample.add(new Temperatur(50.0f));
-		sample.add(new Temperatur(22.0f));
-		sample.add(new Temperatur(9.8f));
-		sample.add(new Temperatur(2.0f));
+		sample.add(Temperatur.createFromKelvin(10.0f));
+		sample.add(Temperatur.createFromKelvin(15.32f));
+		sample.add(Temperatur.createFromCelsius(50.0f));
+		sample.add(Temperatur.createFromCelsius(22.0f));
+		sample.add(Temperatur.createFromKelvin(9.8f));
+		sample.add(Temperatur.createFromCelsius(2.0f));
 		assertTrue(sample.getCount() == 6);
-	}
-
-	/**
-	 * Test method for {@link ch.hslu.oop.sw08.TemperaturVerlauf#toString()}.
-	 */
-	@Test
-	public void testToString() {
-		TemperaturVerlauf sample = new TemperaturVerlauf();
-		sample.add(new Temperatur(9.8f));
-		sample.add(new Temperatur(2.0f));
-		assertEquals("This TemperaturVerlauf-Object contains 2 objects of type Temperatur", sample.toString());
 	}
 
 	/**
@@ -96,12 +85,12 @@ public class TemperaturVerlaufTest {
 	@Test
 	public void testGetMin() {
 		TemperaturVerlauf sample = new TemperaturVerlauf();
-		sample.add(new Temperatur(10.0f));
-		sample.add(new Temperatur(15.32f));
-		sample.add(new Temperatur(50.0f));
-		sample.add(new Temperatur(22.0f));
-		sample.add(new Temperatur(9.8f));
-		sample.add(new Temperatur(2.0f));
+		sample.add(Temperatur.createFromCelsius(10.0f));
+		sample.add(Temperatur.createFromCelsius(15.32f));
+		sample.add(Temperatur.createFromCelsius(50.0f));
+		sample.add(Temperatur.createFromCelsius(22.0f));
+		sample.add(Temperatur.createFromCelsius(9.8f));
+		sample.add(Temperatur.createFromCelsius(2.0f));
 		assertTrue(sample.getMin().getCelsius() == 2.0f);
 	}
 
@@ -111,13 +100,13 @@ public class TemperaturVerlaufTest {
 	@Test
 	public void testGetMax() {
 		TemperaturVerlauf sample = new TemperaturVerlauf();
-		sample.add(new Temperatur(10.0f));
-		sample.add(new Temperatur(15.32f));
-		sample.add(new Temperatur(50.0f));
-		sample.add(new Temperatur(22.0f));
-		sample.add(new Temperatur(9.8f));
-		sample.add(new Temperatur(2.0f));
-		assertTrue(sample.getMax().getCelsius() == 50.0f);
+		sample.add(Temperatur.createFromKelvin(10.0f));
+		sample.add(Temperatur.createFromKelvin(15.32f));
+		sample.add(Temperatur.createFromKelvin(50.0f));
+		sample.add(Temperatur.createFromKelvin(22.0f));
+		sample.add(Temperatur.createFromKelvin(9.8f));
+		sample.add(Temperatur.createFromKelvin(2.0f));
+		assertTrue(sample.getMax().getKelvin() == 50.0f);
 
 	}
 
@@ -126,13 +115,13 @@ public class TemperaturVerlaufTest {
 	 * {@link ch.hslu.oop.sw08.TemperaturVerlauf#calculateAverageKelvin()}.
 	 */
 	@Test
-	public void testCalculateAverage() {
+	public void testCalculateAverageKelvin() {
 		TemperaturVerlauf sample = new TemperaturVerlauf();
-		sample.add(new Temperatur(10.0f));
-		sample.add(new Temperatur(15.32f));
-		sample.add(new Temperatur(50.0f));
-		sample.add(new Temperatur(22.0f));
-		assertTrue(sample.calculateAverage() == 24.33f);
+		sample.add(Temperatur.createFromKelvin(10.0f));
+		sample.add(Temperatur.createFromKelvin(15.32f));
+		sample.add(Temperatur.createFromKelvin(50.0f));
+		sample.add(Temperatur.createFromKelvin(22.0f));
+		assertTrue(sample.calculateAverageKelvin() == 24.33f);
 	}
 
 }
