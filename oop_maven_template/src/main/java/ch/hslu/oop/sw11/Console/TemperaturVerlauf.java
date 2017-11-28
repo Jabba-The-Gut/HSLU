@@ -1,7 +1,7 @@
 /**
  * 
  */
-package ch.hslu.oop.sw10.Console;
+package ch.hslu.oop.sw11.Console;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -142,6 +142,10 @@ public final class TemperaturVerlauf {
         BigDecimal bd = new BigDecimal(Float.toString(d));
         bd = bd.setScale(decimalPlace, BigDecimal.ROUND_HALF_UP);
         return bd.floatValue();
+    }
+    
+    public Collection<Temperatur> getStore(){
+        return this.store;
     }
 
     /**
