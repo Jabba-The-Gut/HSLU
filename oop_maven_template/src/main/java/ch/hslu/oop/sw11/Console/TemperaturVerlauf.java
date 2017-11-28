@@ -11,7 +11,7 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * Klass that stores different Temperatur Objects
+ * Klass that stores different Temperatur-Objects in a Collection
  * 
  * @author Dave
  *
@@ -143,8 +143,8 @@ public final class TemperaturVerlauf {
         bd = bd.setScale(decimalPlace, BigDecimal.ROUND_HALF_UP);
         return bd.floatValue();
     }
-    
-    public Collection<Temperatur> getStore(){
+
+    public Collection<Temperatur> getStore() {
         return this.store;
     }
 

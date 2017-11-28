@@ -8,5 +8,5 @@ package ch.hslu.oop.sw11.Console;
  *
  */
 public interface TemperaturEventListener {
-	public void temperaturEvent(TemperaturEvent event);
+    public void temperaturEvent(TemperaturEvent event);
 }
