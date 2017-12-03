@@ -1,2 +1,4 @@
-# HSLU
-Repo for the hslu-OOP-Module
+# HSLU OOP
+
+Central personal repository for all Java-Excercises done in the Module OOP at HSLU.
+
