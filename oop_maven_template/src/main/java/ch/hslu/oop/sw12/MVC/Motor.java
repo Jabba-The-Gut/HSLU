@@ -1,7 +1,7 @@
 /**
  * 
  */
-package ch.hslu.oop.sw10.Switchable;
+package ch.hslu.oop.sw12.MVC;
 
 import java.beans.PropertyChangeEvent;
 import java.util.ArrayList;
@@ -46,6 +46,18 @@ public class Motor implements Switchable {
     public int getRPM() {
         return this.rpm;
     }
+    
+    public void increaseRPM() {
+        this.rpm = rpm + 10;
+    }
+    
+    public void decreaseRPM() {
+        if(rpm != 10 && rpm > 0) {
+            this.rpm = rpm - 10;
+        } else {
+            this.switchOff();
+        }
+    }
 
     @Override
     public void switchOn() {
@@ -61,7 +73,7 @@ public class Motor implements Switchable {
 
     @Override
     public void switchOff() {
-        if (this.isSwitchedOff()) {
+        if (this.isSwitchedOn()) {
             this.rpm = 0;
             this.state = MotorStateEnum.OFF;
 

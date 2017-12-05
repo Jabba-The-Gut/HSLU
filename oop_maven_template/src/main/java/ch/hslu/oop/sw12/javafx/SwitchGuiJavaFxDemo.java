@@ -1,4 +1,3 @@
-
 /*
  * Copyright 2017 Hochschule Luzern Informatik.
  *
@@ -14,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package ch.hslu.oop.sw12.javafx;
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
