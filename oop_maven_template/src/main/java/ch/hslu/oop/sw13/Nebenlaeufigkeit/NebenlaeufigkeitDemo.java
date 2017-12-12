@@ -5,7 +5,7 @@ import org.apache.logging.log4j.Logger;
 
 /**
  * Demo-Klasse, um den Effekt von kritischen Bereichen und Thread-Safety bei
- * Nebenläufigkeit zu testen
+ * Nebenläufigkeit zu testen.
  * 
  * @author Dave
  *
