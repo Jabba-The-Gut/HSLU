@@ -50,6 +50,7 @@ public class WorkerDemoAsynchron {
 				public void run() {
 					try {
 						workerDemo.processWork(5000);
+						LOG.info("Thread 3 fertig");
 					} catch (Exception e) {
 						LOG.error("Fehler in Thread 3, siehe StackTrace...", e);
 					}
